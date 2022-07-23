@@ -1,0 +1,26 @@
+.girl-and-cat {
+  position: relative;
+
+  height: 840px;
+
+  &__article-wrapper {
+    position: absolute;
+
+    background-image: url(../../images/girl-and-pet.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+      height: 900px;
+      width: 775px;
+      right: -30px;
+      top: -30px;
+      bottom: -30px;
+  }
+
+  &__girl-and-pet {
+    height: 840px;
+  
+    background: #FBE0DC;
+    border-radius: 20px;
+  }
+}
+

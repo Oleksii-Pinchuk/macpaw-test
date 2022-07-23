@@ -1,0 +1,56 @@
+.search-breed-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 470px;
+  padding: 0 10px 0 20px;
+  background: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  border-radius: 20px;
+  transition: all 0.3s;
+
+  &:hover {
+    border: 2px solid #FBE0DC;
+  }
+
+  &:focus-within {
+    border: 2px solid #FF868E;
+  }
+
+  &__input {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+    width: 380px;
+    border: none;
+    transition: all 0.3s;
+
+    &:focus {
+      color: #1D1D1D;
+      outline: none;
+    }
+
+  }
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    background: #FBE0DC;
+    border: none;
+    border-radius: 10px;
+    background-image: url(../../images/search-FF868E.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.3s;
+
+    &:hover {
+      background: #FF868E;
+      background-image: url(../../images/search-FFFFFF.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}

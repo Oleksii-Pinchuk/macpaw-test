@@ -1,0 +1,126 @@
+.breeds {
+
+  &__title {
+    margin-right: 10px;
+  }
+
+  &__breed-select-wrapper {
+    position: relative;
+    height: 40px;
+    margin-right: 10px;
+    width: 226px;
+
+    &::after {
+      position: absolute;
+      height: 8px;
+      width: 12px;
+      right: 10px;
+      bottom: 16px;
+      content: "";
+      background-image: url(../../images/arrow-down.svg);
+    }
+  }
+
+  &__breed-select {
+    box-sizing: border-box;
+    appearance: none;
+
+    width: 100%;
+    background: #F8F8F7;
+    border-radius: 10px;
+    border: 2px solid #F8F8F7;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+
+    padding: 6px 8px;
+    transition: all 0.3s;
+
+    &:hover {
+      border: 2px solid #FBE0DC;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__limit-select-wrapper {
+    position: relative;
+    height: 40px;
+    width: 101px;
+    margin-right: 10px;
+
+
+    &::after {
+      position: absolute;
+      height: 8px;
+      width: 12px;
+      right: 10px;
+      bottom: 16px;
+      content: "";
+      background-image: url(../../images/arrow-down.svg);
+    }
+  }
+
+  &__limit-select {
+    box-sizing: border-box;
+    appearance: none;
+
+    width: 100%;
+    background: #F8F8F7;
+    border-radius: 10px;
+    border: 2px solid #F8F8F7;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+
+    padding: 6px 8px;
+    transition: all 0.3s;
+
+    &:hover {
+      border: 2px solid #FBE0DC;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button-sort {
+    height: 40px;
+    width: 40px;
+    background: #F8F8F7;
+    border: 2px solid #F8F8F7;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    transition: all 0.3s;
+
+    &--down {
+      background-image: url(../../images/sort-down-8C8C8C.svg);
+      margin-right: 10px;
+
+      &:hover {
+        background-image: url(../../images/sort-down-FF868E.svg);
+        border: 2px solid #FBE0DC;
+      }
+    }
+
+    &--up {
+      background-image: url(../../images/sort-up-8C8C8C.svg);
+
+      &:hover {
+        background-image: url(../../images/sort-up-FF868E.svg);
+        border: 2px solid #FBE0DC;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.button--back {
+  height: 40px;
+  width: 40px;
+  background: #FBE0DC;
+  border-radius: 10px;
+  border: none;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url(../../images/back-FF868E.svg);
+  margin-right: 10px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #FF868E;
+    background-image: url(../../images/back-FFFFFF.svg);
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+}

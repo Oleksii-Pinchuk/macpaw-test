@@ -1,0 +1,210 @@
+.upload {
+
+  &__background {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: top;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(29, 29, 29, 0.6);
+  }
+
+  &__container {
+    position: relative;
+    width: 680px;
+    height: 840px;
+    background: #F8F8F7;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    margin: 30px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 52px;
+    /* identical to box height */
+    color: #1D1D1D;
+    padding-bottom: 10px;
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+
+    padding-bottom: 40px;
+  }
+
+  &__area {
+    width: 640px;
+    height: 320px;
+    background: #FFFFFF;
+    border: 2px dashed #FBE0DC;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(../../images/image-upload.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    margin-bottom: 20px;
+  }
+
+  &__selected {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    border-radius: 10px;
+    border: none;
+    transition: all 0.3s;
+
+    &--close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    &--upload {
+      height: 40px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      /* identical to box height, or 133% */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+      background: #FF868E;
+      padding: 12px 30px;
+
+      &:hover {
+        color: #FF868E;
+        background: #FBE0DC;
+        border-radius: 10px;
+      }
+
+    }
+
+    &--uploading {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      /* identical to box height, or 133% */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+      background: #FF868E;
+      padding: 12px 30px;
+    }
+  }
+
+  &__preview {
+    display: block;
+    width: 560px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__instruction {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+
+    &--highlited {
+      font-weight: 500;
+      color: #1D1D1D;
+    }
+  }
+
+  &__status {
+    width: 640px;
+    height: 60px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #8C8C8C;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 18px 50px;
+
+    &--not-found {
+      background-image: url(../../images/cross-mark-FF868E.svg);
+      background-repeat: no-repeat;
+      background-position: left 20px center;
+    }
+
+    &--found {
+      background-image: url(../../images/check-mark-97EAB9.svg);
+      background-repeat: no-repeat;
+      background-position: left 20px center;
+    }
+  }
+}
+
+.button--close {
+  height: 40px;
+  width: 40px;
+  background: #FBE0DC;
+  border-radius: 10px;
+  border: none;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url(../../images/close-FF868E.svg);
+  margin-right: 10px;
+
+  transition: all 0.3s;
+
+  &:hover {
+    background: #FF868E;
+    background-image: url(../../images/close-FFFFFF.svg);
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+}
+
+.spiner {
+  &--small {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    animation: rotation 2s infinite linear;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}

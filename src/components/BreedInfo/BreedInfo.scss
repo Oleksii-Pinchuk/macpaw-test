@@ -2,6 +2,7 @@
 
   &__title {
     height: 40px;
+    width: 143px;
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
@@ -13,17 +14,16 @@
     color: #FF868E;
     background: #FBE0DC;
     border-radius: 10px;
-    
+
     padding: 5px 30px;
-    margin-right: 10px;
   }
 
   &__id {
     height: 40px;
+    width: 90px;
     font-weight: 500;
     font-size: 20px;
-    line-height: 30px;
-    /* identical to box height, or 150% */
+    line-height: 150%;
     text-align: center;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -32,31 +32,7 @@
     background: #FF868E;
     border-radius: 10px;
 
-    padding: 5px 30px;
-    margin-right: 10px;
-  }
-
-  &__image {
-    position: relative;
-    display: block;
-    width: 640px;
-    height: 360px;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-
-  &__slidebar {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    z-index: 1;
-    width: 90px;
-    height: 30px;
-    background: #FFFFFF;
-    border: none;
-    border-radius: 20px;
-    padding: 10px;
-    margin: -15px auto 5px;
+    padding: 5px 0;
   }
 
   &__name {
@@ -64,45 +40,37 @@
     z-index: 1;
 
     font-weight: 500;
-    font-size: 36px;
-    line-height: 52px;
-    /* identical to box height */
+    font-size: 20px;
+    line-height: 29px;
     color: #1D1D1D;
 
     background: #FFFFFF;
     border-radius: 20px;
 
-    padding: 5px 40px;
+    padding: 16px 20px 17px 20px;
   }
 
   &__description {
-    display: grid;
-    grid-template-columns: repeat(2, 270px);
-    column-gap: 20px;
-    grid-template-areas:
-      "fact fact"
-      "temperament origin"
-      "temperament weight"
-      "temperament life_span";
-
-    min-height: 204px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 314px;
     border: 2px solid #FBE0DC;
     border-radius: 20px;
-    margin-bottom: 20px;
-    padding: 26px 40px 40px;
+    padding: 17px 18px 12px 18px;
   }
 
   &__fact {
-    display: flex;
+    position: relative;
+    z-index: 1;
     text-align: justify;
     align-items: center;
     grid-area: fact;
     font-weight: 500;
     font-size: 20px;
     line-height: 29px;
-    /* identical to box height */
     color: #8C8C8C;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   &__temperament {
@@ -111,12 +79,10 @@
 
   &__origin {
     grid-area: origin;
-    margin-bottom: 10px;
   }
 
   &__weight {
     grid-area: weight;
-    margin-bottom: 10px;
   }
 
   &__life-span {
@@ -131,8 +97,8 @@
 
   &__image-wrapper {
     position: relative;
-    width: 640px;
-    height: 360px;
+    width: 295px;
+    height: 166px;
     border-radius: 20px;
   }
 
@@ -162,6 +128,11 @@
   }
 }
 
+.slideshow__image-wrapper:hover .card__hover-background {
+  display: block;
+  transition: all 0.3s;
+}
+
 .characteristic {
   font-weight: 400;
   font-size: 16px;
@@ -183,4 +154,57 @@
   position: relative;
   z-index: 1;
   margin-bottom: -31px;
+}
+
+@media (min-width: 768px) {
+  .breed-info {
+    &__id {
+      width: auto;
+      padding: 5px 30px;
+    }
+
+    &__description {
+      display: grid;
+      grid-template-columns: repeat(2, 284px);
+      column-gap: 20px;
+      row-gap: 10px;
+      grid-template-areas:
+        "fact fact"
+        "temperament origin"
+        "temperament weight"
+        "temperament life_span";
+
+      min-height: 204px;
+      padding: 24px 38px 38px;
+    }
+
+    &__name {
+      font-size: 36px;
+      line-height: 52px;
+      padding: 5px 40px;
+      margin-bottom: 0;
+    }
+  }
+
+  .slideshow {
+    &__image-wrapper {
+      width: 668px;
+      height: 376px;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .breed-info {
+    &__description {
+      grid-template-columns: repeat(2, 270px);
+    }
+  }
+
+  .slideshow {
+    &__image-wrapper {
+      width: 640px;
+      height: 360px;
+    }
+  }
 }

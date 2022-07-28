@@ -23,7 +23,6 @@ const Gallery = () => {
   const [page, setPage] = useState(0);
   const [breedId, setBreedId] = useState('');
   const [pageLoaded, setPageLoaded] = useState(false);
-  const [galleryLoaded, setGalleryLoaded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const fetchFilteredImages = async (
@@ -33,7 +32,6 @@ const Gallery = () => {
     order: string,
     type: string,
   ) => {
-    setGalleryLoaded(false);
     const filteredImages = await request(`images/search?api_key=c03feea5-7160-4ef0-a72f-c7e33b4c4895&limit=${limit}&page=${page}&breed_id=${breedId}&order=${order}&mime_types=${type}`);
 
     if (filteredImages.length === 0 && page !== 0) {
@@ -49,7 +47,6 @@ const Gallery = () => {
 
       setImagesToShow(chunkedImages);
       setPageLoaded(true);
-      setGalleryLoaded(true);
     }
   };
 
@@ -91,25 +88,30 @@ const Gallery = () => {
     }
   };
 
+  const onHandleUploadButton = () => {
+    const body = document.querySelector("body") as HTMLBodyElement;
+    
+    setModalOpen(true);
+    body.style.overflow = "hidden";
+  };
+
   return (
-    <section className="gallery section">
-      <article className="gallery__main section__main">
-        <div className="breeds__nav section__nav">
-          <ButtonBack />
+    <article className="section__main">
+      <div className="breeds__nav section__nav">
+        <ButtonBack />
 
-          <div className="gallery__title section__title">gallery</div>
+        <div className="gallery__title section__title">gallery</div>
 
-          {pageLoaded && (
-            <button
-              type="button"
-              className="gallery__button-upload"
-              onClick={() => setModalOpen(true)}
-            >upload</button>
-          )}
-        </div>
+        {modalOpen && <UploadModal setOpenModal={setModalOpen} />}
 
         {pageLoaded && (
           <>
+            <button
+              type="button"
+              className="gallery__button-upload"
+              onClick={onHandleUploadButton}
+            >upload</button>
+
             <div className="gallery__settings">
               <label htmlFor="order" className="label gallery__order-label">
                 order
@@ -213,102 +215,97 @@ const Gallery = () => {
                 }}
               ></button>
             </div>
-
-            {(galleryLoaded && imagesToShow.length === 0) && (
-              <div className="no-items-found-announcement">
-                No item found
-              </div>
-            )}
-
-            {(galleryLoaded && imagesToShow.length !== 0) && (
-              <>
-                <div className="section__images-gallery gallery__images-gallery">
-                  {imagesToShow.map((chunk, index) => (
-                    <div className={classNames(
-                      'grid',
-                      {
-                        'grid--less-than-4': chunk.length <= 3,
-                        'grid--less-than-3': chunk.length <= 2,
-                      })}
-                      key={index}
-                    >
-                      {chunk.map((image, index) => (
-                        <div
-                          className={classNames(
-                            'card',
-                            'grid__item',
-                            `grid__item--${index + 1}`,
-                          )}
-                          key={image.id}
-                        >
-                          <img
-                            src={image.url}
-                            alt={image.id}
-                            className="card__image" />
-
-                          <div className="card__hover-background">
-                            <button
-                              type="button"
-                              className={classNames(
-                                'card__button',
-                                {
-                                  'card__button--add-to-fav': !favourites.some((fav) => fav.image_id === image.id),
-                                  'card__button--remove-from-fav': favourites.some((fav) => fav.image_id === image.id),
-                                },
-                              )}
-                              onClick={() => onHandleAddRemoveFavouriteButton(image)}
-                            ></button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="gallery__navigation navigation">
-                  <button
-                    type="button"
-                    className="navigation__button navigation__button--prev"
-                    onClick={() => {
-                      if (page > 0) {
-                        setPage(page - 1);
-                      }
-                    }}
-                  >
-                    prev
-                  </button>
-
-                  <button
-                    type="button"
-                    className="navigation__button navigation__button--next"
-                    onClick={() => {
-                      setPage(page + 1);
-                    }}
-                  >
-                    next
-                  </button>
-                </div>
-              </>
-            )}
-
-            {!galleryLoaded && (
-              <div className="section__loader">
-                <MoonLoader size={100} color="#FBE0DC" />
-              </div>
-            )}
-
           </>
         )}
+      </div>
 
-        {!pageLoaded && (
-          <div className="section__loader">
-            <MoonLoader size={100} color="#FBE0DC" />
-          </div>
-        )}
-      </article>
+      {pageLoaded && (
+        <>
+          {(imagesToShow.length === 0) && (
+            <div className="no-items-found-announcement">
+              No item found
+            </div>
+          )}
 
-      {modalOpen && <UploadModal setOpenModal={setModalOpen} />}
-    </section>
+          {(imagesToShow.length !== 0) && (
+            <>
+              <div className="section__images-gallery gallery__images-gallery">
+                {imagesToShow.map((chunk, index) => (
+                  <div className={classNames(
+                    'grid',
+                    {
+                      'grid--less-than-4': chunk.length <= 3,
+                      'grid--less-than-3': chunk.length <= 2,
+                    })}
+                    key={index}
+                  >
+                    {chunk.map((image, index) => (
+                      <div
+                        className={classNames(
+                          'card',
+                          'grid__item',
+                          `grid__item--${index + 1}`,
+                        )}
+                        key={image.id}
+                      >
+                        <img
+                          src={image.url}
+                          alt={image.id}
+                          className="card__image" />
+
+                        <div className="card__hover-background">
+                          <button
+                            type="button"
+                            className={classNames(
+                              'card__button',
+                              {
+                                'card__button--add-to-fav': !favourites.some((fav) => fav.image_id === image.id),
+                                'card__button--remove-from-fav': favourites.some((fav) => fav.image_id === image.id),
+                              },
+                            )}
+                            onClick={() => onHandleAddRemoveFavouriteButton(image)}
+                          ></button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              <div className="gallery__navigation navigation">
+                <button
+                  type="button"
+                  className="navigation__button navigation__button--prev"
+                  onClick={() => {
+                    if (page > 0) {
+                      setPage(page - 1);
+                    }
+                  }}
+                >
+                  prev
+                </button>
+
+                <button
+                  type="button"
+                  className="navigation__button navigation__button--next"
+                  onClick={() => {
+                    setPage(page + 1);
+                  }}
+                >
+                  next
+                </button>
+              </div>
+            </>
+          )}
+        </>
+      )}
+
+      {!pageLoaded && (
+        <div className="section__loader">
+          <MoonLoader size={100} color="#FBE0DC" />
+        </div>
+      )}
+    </article>
   );
 };
 

@@ -1,14 +1,13 @@
 .breeds {
 
   &__title {
-    margin-right: 10px;
+    width: 143px;
   }
 
   &__breed-select-wrapper {
     position: relative;
     height: 40px;
-    margin-right: 10px;
-    width: 226px;
+    width: 100%;
 
     &::after {
       position: absolute;
@@ -49,11 +48,10 @@
   }
 
   &__limit-select-wrapper {
+
+    width: 195px;
     position: relative;
     height: 40px;
-    width: 101px;
-    margin-right: 10px;
-
 
     &::after {
       position: absolute;
@@ -106,7 +104,6 @@
 
     &--down {
       background-image: url(../../images/sort-down-8C8C8C.svg);
-      margin-right: 10px;
 
       &:hover {
         background-image: url(../../images/sort-down-FF868E.svg);
@@ -121,6 +118,34 @@
         background-image: url(../../images/sort-up-FF868E.svg);
         border: 2px solid #FBE0DC;
       }
+    }
+  }
+}
+
+.breeds__nav.section__nav {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .breeds {
+    &__breed-select-wrapper {
+      width: 254px;
+    }
+
+    &__limit-select-wrapper {
+      width: 101px;
+    }
+  }
+
+  .breeds__nav.section__nav {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .breeds {
+    &__breed-select-wrapper {
+      width: 226px;
     }
   }
 }

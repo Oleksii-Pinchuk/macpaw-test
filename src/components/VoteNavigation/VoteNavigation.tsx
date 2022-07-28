@@ -5,31 +5,39 @@ import "./VoteNavigation.scss";
 
 const VoteNavigation = () => {
   return (
-    <nav className="vote-nav section__nav">
+    <nav className="vote-nav">
       <NavLink
-        to="macpaw-test/likes"
+        to="/likes"
         className={({ isActive }) => classNames(
-          'vote-nav__button',
-          'vote-nav__button--likes',
-          { 'vote-nav__button--likes-active': isActive }
+          'vote-nav__likes',
+          {
+            'vote-nav__likes--active': isActive,
+            'vote-nav__likes--not-active': !isActive,
+          }
         )}
       >
       </NavLink>
 
       <NavLink
-        to="macpaw-test/favourites"
-        className={isActive =>
-          "vote-nav__button vote-nav__button--favourites" + (!isActive ? " vote-nav__button--favourites" : "")
-        }
+        to="/favourites"
+        className={({ isActive }) => classNames(
+          'vote-nav__favourites',
+          {
+            'vote-nav__favourites--active': isActive,
+            'vote-nav__favourites--not-active': !isActive,
+          }
+        )}
       >
       </NavLink>
 
       <NavLink
-        to="macpaw-test/dislikes"
+        to="/dislikes"
         className={({ isActive }) => classNames(
-          { selected: isActive },
-          'vote-nav__button',
-          'vote-nav__button--dislikes'
+          'vote-nav__dislikes',
+          {
+            'vote-nav__dislikes--active': isActive,
+            'vote-nav__dislikes--not-active': !isActive,
+          }
         )}
       >
       </NavLink>

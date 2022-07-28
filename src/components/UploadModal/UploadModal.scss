@@ -1,6 +1,8 @@
 .upload {
 
   &__background {
+    overflow-y: auto;
+
     position: fixed;
     display: flex;
     justify-content: flex-end;
@@ -10,46 +12,49 @@
     left: 0;
     top: 0;
     background: rgba(29, 29, 29, 0.6);
+    z-index: 1;
   }
 
   &__container {
     position: relative;
-    width: 680px;
-    height: 840px;
-    background: #F8F8F7;
-    border-radius: 20px;
+    min-width: 375px;
+    width: 375px;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 100px;
-    margin: 30px;
+
+    background: #F8F8F7;
+    padding: 100px 20px 20px;
+    margin: 0 auto;
   }
 
   &__title {
     font-weight: 500;
-    font-size: 36px;
-    line-height: 52px;
-    /* identical to box height */
+    font-size: 20px;
+    line-height: 29px;
+
     color: #1D1D1D;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
 
   &__description {
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    /* identical to box height, or 150% */
     color: #8C8C8C;
 
-    padding-bottom: 40px;
+    padding-bottom: 20px;
   }
 
   &__area {
-    width: 640px;
-    height: 320px;
+    width: 100%;
+    height: 167.5px;
     background: #FFFFFF;
     border: 2px dashed #FBE0DC;
     border-radius: 20px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,78 +63,17 @@
     background-position: center;
     background-repeat: no-repeat;
 
-    margin-bottom: 20px;
-  }
-
-  &__selected {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height, or 150% */
-    color: #8C8C8C;
-    margin-bottom: 20px;
-  }
-
-  &__button {
-    border-radius: 10px;
-    border: none;
-    transition: all 0.3s;
-
-    &--close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-
-    &--upload {
-      height: 40px;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-      /* identical to box height, or 133% */
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #FFFFFF;
-      background: #FF868E;
-      padding: 12px 30px;
-
-      &:hover {
-        color: #FF868E;
-        background: #FBE0DC;
-        border-radius: 10px;
-      }
-
-    }
-
-    &--uploading {
-      display: flex;
-      justify-content: space-between;
-      height: 40px;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-      /* identical to box height, or 133% */
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #FFFFFF;
-      background: #FF868E;
-      padding: 12px 30px;
-    }
-  }
-
-  &__preview {
-    display: block;
-    width: 560px;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 10.5px;
   }
 
   &__instruction {
+    text-align: center;
+    width: 199px;
+
     font-weight: 400;
     font-size: 20px;
-    line-height: 30px;
-    /* identical to box height, or 150% */
+    line-height: 29px;
     color: #8C8C8C;
 
     &--highlited {
@@ -138,13 +82,90 @@
     }
   }
 
+  &__preview {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__selected {
+    max-width: 100%;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    overflow: hidden;
+
+    color: #8C8C8C;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+
+    border: none;
+    transition: all 0.3s;
+
+    &--close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      height: 60px;
+      width: 60px;
+
+      border-radius: 20px;
+      background: #FBE0DC;
+      background-image: url(../../images/close-FF868E.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto;
+
+      &:hover {
+        background: #FF868E;
+        background-image: url(../../images/close-FFFFFF.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto;
+      }
+    }
+
+    &--upload {
+      height: 40px;
+      width: 100%;
+      border-radius: 10px;
+      background: #FF868E;
+      padding: 12px 30px;
+
+      &:hover {
+        color: #FF868E;
+        background: #FBE0DC;
+      }
+
+    }
+
+    &--uploading {
+      width: 100%;
+      height: 40px;
+      border-radius: 10px;
+
+      background: #FF868E;
+      padding: 12px 30px;
+    }
+  }
+
   &__status {
-    width: 640px;
+    width: 100%;
     height: 60px;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
     color: #8C8C8C;
 
     background: #FFFFFF;
@@ -165,46 +186,58 @@
   }
 }
 
-.button--close {
-  height: 40px;
-  width: 40px;
-  background: #FBE0DC;
-  border-radius: 10px;
-  border: none;
+@media (min-width: 768px) {
+  .upload {
+    &__container {
+      width: 708px;
+      height: 964px;
+      border-radius: 20px;
+      margin: 30px auto;
+    }
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-image: url(../../images/close-FF868E.svg);
-  margin-right: 10px;
+    &__title {
+      font-size: 36px;
+      line-height: 52px;
 
-  transition: all 0.3s;
+      padding-bottom: 10px;
+    }
 
-  &:hover {
-    background: #FF868E;
-    background-image: url(../../images/close-FFFFFF.svg);
-    border-radius: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
+    &__description {
+      padding-bottom: 40px;
+    }
+
+    &__area {
+      height: 334px;
+      padding: 20px 41px;
+      margin-bottom: 20px;
+    }
+
+    &__instruction {
+      width: 100%;
+      line-height: 30px;
+    }
+
+    &__button {
+      &--upload {
+        display: flex;
+        width: auto;
+      }
+    }
   }
 }
 
-.spiner {
-  &--small {
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-    animation: rotation 2s infinite linear;
-  }
-}
+@media (min-width: 1440px) {
+  .upload {
+    &__container {
+      width: 680px;
+      height: 840px;
+      margin: 0;
+      top: 30px;
+      right: calc(50vw - 690px);
+    }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
+    &__area {
+      height: 320px;
+    }
   }
 }

@@ -49,85 +49,84 @@ const BreedInfo: React.FC<{ breed: Breed }> = ({ breed }) => {
   };
 
   return (
-    <section className="breed-info section">
-      <article className="breed-info__main section__main">
-        <div className="breed-info__nav section__nav">
-          <ButtonBack />
+    <article className="section__main">
+      <div className="breed-info__nav section__nav">
+        <ButtonBack />
 
-          <div className="breed-info__title">breeds</div>
+        <div className="breed-info__title">breeds</div>
 
-          <div className="breed-info__id section__title">{breed.id}</div>
-        </div>
+        <div className="breed-info__id">{breed.id}</div>
+      </div>
 
-        {loaded ? (
-          <>
-            <div className="breed-info__slideshow slideshow">
-              <div className="slideshow__image-wrapper card">
-                <img
-                  src={image?.url}
-                  alt={''}
-                  className="slideshow__image card__image"
-                />
-                <div className="card__hover-background">
-                  <button
-                    type="button"
-                    className={classNames(
-                      'card__button',
-                      {
-                        'card__button--add-to-fav': !favourites.some((fav) => fav.image_id === image.id),
-                        'card__button--remove-from-fav': favourites.some((fav) => fav.image_id === image.id),
-                      },
-                    )}
-                    onClick={() => onHandleAddRemoveFavouriteButton()}
-                  ></button>
-                </div>
-              </div>
-
-              <div className="slideshow__dots">
-                {breedImages.map((image, i) => (
-                  <div
-                    className={classNames(
-                      'slideshow__dot',
-                      { 'slideshow__dot--active': index === i },
-                    )}
-                    onClick={() => onHandleDotClick(i)}
-                  ></div>
-                ))}
+      {loaded ? (
+        <>
+          <div className="slideshow">
+            <div className="slideshow__image-wrapper">
+              <img
+                src={image?.url}
+                alt={''}
+                className="slideshow__image card__image"
+              />
+              <div className="card__hover-background">
+                <button
+                  type="button"
+                  className={classNames(
+                    'card__button',
+                    {
+                      'card__button--add-to-fav': !favourites.some((fav) => fav.image_id === image.id),
+                      'card__button--remove-from-fav': favourites.some((fav) => fav.image_id === image.id),
+                    },
+                  )}
+                  onClick={() => onHandleAddRemoveFavouriteButton()}
+                ></button>
               </div>
             </div>
 
-            <div className="wrapper">
-              <div className="breed-info__name">{breed.name}</div>
+            <div className="slideshow__dots">
+              {breedImages.map((image, i) => (
+                <div
+                  key={i}
+                  className={classNames(
+                    'slideshow__dot',
+                    { 'slideshow__dot--active': index === i },
+                  )}
+                  onClick={() => onHandleDotClick(i)}
+                ></div>
+              ))}
             </div>
-
-            <div className="breed-info__description">
-              <p className="breed-info__fact">{breed.description.split('.')[0] + '.'}</p>
-
-              <p className="breed-info__temperament characteristic">
-                <span className="characteristic__name"><b>Temperament: </b></span>
-                {breed.temperament}
-              </p>
-
-              <p className="breed-info__origin characteristic">
-                <span className="characteristic__name"><b>Origin: </b></span>{breed.origin}
-              </p>
-
-              <p className="breed-info__weight characteristic">
-                <span className="characteristic__name"><b>Weight: </b></span> {breed.weight.metric} kgs
-              </p>
-
-              <p className="breed-info__life-span characteristic">
-                <span className="characteristic__name"><b>Life span: </b></span>{breed.life_span} years
-              </p>
-            </div>
-          </>
-        ) : (
-          <div className="section__loader">
-            <MoonLoader size={100} color="#FBE0DC" />
           </div>
-        )}
-      </article>
-    </section>
+
+          <div className="wrapper">
+            <div className="breed-info__name">{breed.name}</div>
+          </div>
+
+          <div className="breed-info__description">
+            <p className="breed-info__fact">{breed.description.split('.')[0].split(',')[0] + '.'}</p>
+
+            <p className="breed-info__temperament characteristic">
+              <span className="characteristic__name"><b>Temperament: </b></span>
+              {breed.temperament}
+            </p>
+
+            <p className="breed-info__origin characteristic">
+              <span className="characteristic__name"><b>Origin: </b></span>{breed.origin}
+            </p>
+
+            <p className="breed-info__weight characteristic">
+              <span className="characteristic__name"><b>Weight: </b></span> {breed.weight.metric} kgs
+            </p>
+
+            <p className="breed-info__life-span characteristic">
+              <span className="characteristic__name"><b>Life span: </b></span>{breed.life_span} years
+            </p>
+          </div>
+        </>
+      ) : (
+        <div className="section__loader">
+          <MoonLoader size={100} color="#FBE0DC" />
+        </div>
+      )}
+    </article>
   )
 };
 

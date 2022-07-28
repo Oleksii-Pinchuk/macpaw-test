@@ -11,15 +11,15 @@ import Voting from './components/Voting/Voting';
 import Dislikes from './components/Dislikes/Dislikes';
 import Search from './components/Search/Search';
 import Home from './components/Home/Home';
+import GirlAndCat from './components/GirlAndCat/GirlAndCat';
+import Header from './components/Header/Header';
 
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { getVotes } from './features/votesSlice';
 import { getAllBreeds } from './features/breedsSlice';
+import { getFavourites } from './features/favouritesSlice';
 
 import './App.scss';
-import GirlAndCat from './components/GirlAndCat/GirlAndCat';
-import Header from './components/Header/Header';
-import { getFavourites } from './features/favouritesSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -35,21 +35,30 @@ function App() {
   return (
     <div className="page-container">
       <div className="page">
-        <Home />
-        <section>
-          {location.pathname !== '/macpaw-test/home' && (<Header />)}
+        <section className="page__left-section">
+          <Home />
+        </section>
+        <section className="section">
+          {location.pathname !== '/home' && (<Header />)}
           <Routes>
             <Route />
-            <Route path="macpaw-test/voting" element={<Voting />} />
-            <Route path="macpaw-test/breeds" element={<Breeds />} />
-            <Route path={`macpaw-test/breeds/${choosenBreed.id}`} element={<BreedInfo breed={choosenBreed} />} />
-            <Route path="macpaw-test/gallery" element={<Gallery />} />
-            <Route path="macpaw-test/search" element={<Search />} />
-            <Route path="macpaw-test/likes" element={<Likes />} />
-            <Route path="macpaw-test/favourites" element={<Favourites />} />
-            <Route path="macpaw-test/dislikes" element={<Dislikes />} />
-            <Route path="macpaw-test/home" element={<GirlAndCat />} />
-            <Route path="*" element={<Navigate to="/macpaw-test/home" />} />
+            <Route path="/voting" element={<Voting />} />
+            <Route path="/breeds" element={<Breeds />} />
+            <Route path={`/breeds/${choosenBreed.id}`} element={<BreedInfo breed={choosenBreed} />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/likes" element={<Likes />} />
+            <Route path="/favourites" element={<Favourites />} />
+            <Route path="/dislikes" element={<Dislikes />} />
+            <Route path="/home" element=
+              {
+                <>
+                  <Home />
+                  <GirlAndCat />
+                </>
+              }
+            />
+            <Route path="*" element={<Navigate to="/home" />} />
           </Routes>
         </section>
       </div>

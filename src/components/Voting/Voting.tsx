@@ -98,55 +98,55 @@ const Voting = () => {
   }, []);
 
   return (
-    <section className="voting section">
-      <article className="voting__main">
-        <div className="voting__nav">
-          <ButtonBack />
+    <article className="section__main">
+      <div className="voting__nav section__nav">
+        <ButtonBack />
 
-          <div className="voting__title section__title">voting</div>
-        </div>
+        <div className="voting__title section__title">voting</div>
+      </div>
 
-        {loaded ? (
-          <>
-            <img
-              src={image.url}
-              alt="breed-representative"
-              className="voting__image"
-            />
-
-            <div className="voting__buttons">
-              <button
-                className="voting__button voting__button--likes"
-                onClick={() => onHandleVotingButton('Likes')}
-              >
-              </button>
-              <button
-                className="voting__button voting__button--favourites"
-                onClick={onHandleAddRemoveFavouriteButton}
-              >
-              </button>
-              <button
-                className="voting__button voting__button--dislikes"
-                onClick={() => onHandleVotingButton('Dislikes')}
-              >
-              </button>
-            </div>
-
-            {logs.map((log, i) => (
-              <Fragment key={i}>
-                <Log log={log} />
-              </Fragment>
-            ))
-            }
-          </>
-        ) : (
-          <div className="section__loader">
-            <MoonLoader size={100} color="#FBE0DC" />
+      {loaded ? (
+        <>
+          <div className="voting__image-container {">
+          <img
+            src={image.url}
+            alt="breed-representative"
+            className="voting__image"
+          />
           </div>
-        )}
-      </article>
-    </section>
-  )
-}
+
+          <div className="voting__buttons">
+            <button
+              className="voting__button voting__button--likes"
+              onClick={() => onHandleVotingButton('Likes')}
+            >
+            </button>
+            <button
+              className="voting__button voting__button--favourites"
+              onClick={onHandleAddRemoveFavouriteButton}
+            >
+            </button>
+            <button
+              className="voting__button voting__button--dislikes"
+              onClick={() => onHandleVotingButton('Dislikes')}
+            >
+            </button>
+          </div>
+
+          {logs.map((log, i) => (
+            <Fragment key={i}>
+              <Log log={log} />
+            </Fragment>
+          ))
+          }
+        </>
+      ) : (
+        <div className="section__loader">
+          <MoonLoader size={100} color="#FBE0DC" />
+        </div>
+      )}
+    </article>
+  );
+};
 
 export default Voting;

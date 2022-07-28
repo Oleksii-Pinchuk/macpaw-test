@@ -6,9 +6,8 @@ import { request } from '../../api/api';
 import { useAppSelector } from '../../hooks/hooks';
 
 import ButtonBack from '../ButtonBack/ButtonBack';
+import NotFoundNotice from '../NotFoundNotice/NotFoundNotice';
 import { MoonLoader } from 'react-spinners';
-
-import "./Likes.scss";
 
 const Likes = () => {
   const { votes } = useAppSelector(state => state.votes);
@@ -44,58 +43,54 @@ const Likes = () => {
   }, []);
 
   return (
-    <section className="section likes">
-      <article className="section__main likes__main">
-        <div className="likes__nav section__nav">
-          <ButtonBack />
-          <div className="section__title likes__title">likes</div>
+    <article className="section__main">
+      <div className="likes__nav section__nav">
+        <ButtonBack />
+        <div className="section__title likes__title">likes</div>
+      </div>
+
+      {!loaded && (
+        <div className="section__loader">
+          <MoonLoader size={100} color="#FBE0DC" />
         </div>
+      )}
 
-        {!loaded && (
-          <div className="section__loader">
-            <MoonLoader size={100} color="#FBE0DC" />
-          </div>
-        )}
+      {(likedImages.length === 0 && loaded) && (
+        <NotFoundNotice />
+      )}
 
-        {(likedImages.length === 0 && loaded) && (
-          <div className="no-items-found-announcement">
-            No item found
-          </div>
-        )}
-
-        {(likedImages.length > 0 && loaded) && (
-          <div className="section__images-gallery likes__images-gallery">
-            {likedImages.map((chunk, i) => (
-              <div
-                className={classNames(
-                  'grid',
-                  {
-                    'grid--less-than-4': chunk.length <= 3,
-                    'grid--less-than-3': chunk.length <= 2,
-                  })}
-                key={i}
-              >
-                {chunk.map((image, index) => (
-                  <div
-                    className={classNames(
-                      'card',
-                      'grid__item',
-                      `grid__item--${index + 1}`,
-                    )}
-                    key={image.id}
-                  >
-                    <img
-                      src={image.url}
-                      alt={image.id}
-                      className="card__image" />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
-      </article>
-    </section>
+      {(likedImages.length > 0 && loaded) && (
+        <div className="section__images-gallery likes__images-gallery">
+          {likedImages.map((chunk, i) => (
+            <div
+              className={classNames(
+                'grid',
+                {
+                  'grid--less-than-4': chunk.length <= 3,
+                  'grid--less-than-3': chunk.length <= 2,
+                })}
+              key={i}
+            >
+              {chunk.map((image, index) => (
+                <div
+                  className={classNames(
+                    'card',
+                    'grid__item',
+                    `grid__item--${index + 1}`,
+                  )}
+                  key={image.id}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.id}
+                    className="card__image" />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+    </article>
   );
 };
 

@@ -7,6 +7,7 @@ import { MoonLoader } from "react-spinners";
 import { setBreed } from "../../features/breedsSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import ButtonBack from "../ButtonBack/ButtonBack";
+import NotFoundNotice from "../NotFoundNotice/NotFoundNotice";
 
 import "./Search.scss";
 
@@ -44,65 +45,62 @@ const Search = () => {
   }, [breedsName]);
 
   return (
-    <section className="section search">
-      <article className="section__main search__main">
-        <div className="search__nav section__nav">
-          <ButtonBack />
-          <h2 className="section__title search__title">search</h2>
+    <article className="section__main search__main">
+      <div className="search__nav section__nav">
+        <ButtonBack />
+        <h2 className="section__title search__title">search</h2>
+      </div>
+
+      {!loaded && (
+        <div className="section__loader">
+          <MoonLoader size={100} color="#FBE0DC" />
         </div>
+      )}
 
+      {loaded && (
+        <p className="search__paragraph">
+          {`Search results for: `}
+          <span className="search__name">{breedsName === '' ? 'all' : breedsName}</span>
+        </p>
+      )}
 
+      {(loaded && searchedBreeds.length === 0) && (
+        <NotFoundNotice />
+      )}
 
-        {!loaded && (
-          <div className="section__loader">
-            <MoonLoader size={100} color="#FBE0DC" />
-          </div>
-        )}
-
-        {(loaded && searchedBreeds.length === 0) && (
-          <div className="search__annoncement-not-found">
-            No item found
-          </div>
-        )}
-
-        {(loaded && searchedBreeds.length !== 0) && (
-          <>
-            <p className="search__paragraph">
-              {`Search results for: `}
-              <span className="search__name">{breedsName === '' ? 'all' : breedsName}</span>
-            </p>
-            <div className="section__image-gallery search__images-gallery">
-              {breedsToShow.map((chunk) => (
-                <div className="grid">
-                  {chunk.map((breed, index) => (
+      {(loaded && searchedBreeds.length !== 0) && (
+        <>
+          <div className="section__images-gallery search__images-gallery">
+            {breedsToShow.map((chunk) => (
+              <div className="grid">
+                {chunk.map((breed, index) => (
+                  <div
+                    className={classNames(
+                      'card',
+                      'grid__item',
+                      `grid__item--${index + 1}`,
+                    )}
+                    key={breed.id}
+                  >
+                    <img
+                      src={breed.image?.url}
+                      alt={breed.id}
+                      className="card__image"
+                    />
                     <div
-                      className={classNames(
-                        'card',
-                        'grid__item',
-                        `grid__item--${index + 1}`,
-                      )}
-                      key={breed.id}
+                      className="card__hover-background"
+                      onClick={() => onClickBreedImage(breed.id)}
                     >
-                      <img
-                        src={breed.image?.url}
-                        alt={breed.id}
-                        className="card__image"
-                      />
-                      <div
-                        className="card__hover-background"
-                        onClick={() => onClickBreedImage(breed.id)}
-                      >
-                        <div className="card__title">{breed.name}</div>
-                      </div>
+                      <div className="card__title">{breed.name}</div>
                     </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-      </article>
-    </section>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </article>
   );
 };
 

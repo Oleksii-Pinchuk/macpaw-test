@@ -6,7 +6,7 @@ import { request } from '../../api/api';
 import { useAppSelector } from '../../hooks/hooks';
 
 import ButtonBack from '../ButtonBack/ButtonBack';
-import "./Dislikes.scss";
+import NotFoundNotice from '../NotFoundNotice/NotFoundNotice';
 
 const Dislikes = () => {
   const { votes } = useAppSelector(state => state.votes);
@@ -43,58 +43,54 @@ const Dislikes = () => {
   }, []);
 
   return (
-    <section className="section dislikes">
-      <article className="section__main dislikes__main">
-        <div className="dislikes__nav section__nav">
-          <ButtonBack />
-          <div className="section__title dislikes__title">dislikes</div>
+    <article className="section__main">
+      <div className="dislikes__nav section__nav">
+        <ButtonBack />
+        <div className="section__title dislikes__title">dislikes</div>
+      </div>
+
+      {(dislikedImages.length === 0 && loaded) && (
+        <NotFoundNotice />
+      )}
+
+      {!loaded && (
+        <div className="section__loader">
+          <MoonLoader size={100} color="#FBE0DC" />
         </div>
+      )}
 
-        {(dislikedImages.length === 0 && loaded) && (
-          <div className="no-items-found-announcement">
-            No item found
-          </div>
-        )}
-
-        {!loaded && (
-          <div className="section__loader">
-            <MoonLoader size={100} color="#FBE0DC" />
-          </div>
-        )}
-
-        {(dislikedImages.length > 0 && loaded) && (
-          <div className="section__images-gallery dislikes__images-gallery">
-            {dislikedImages.map((chunk, i) => (
-              <div
+      {(dislikedImages.length > 0 && loaded) && (
+        <div className="section__images-gallery dislikes__images-gallery">
+          {dislikedImages.map((chunk, i) => (
+            <div
               className={classNames(
                 'grid',
                 {
                   'grid--less-than-4': chunk.length <= 3,
                   'grid--less-than-3': chunk.length <= 2,
                 })}
-                key={i}
-              >
-                {chunk.map((image, index) => (
-                  <div
-                    className={classNames(
-                      'card',
-                      'grid__item',
-                      `grid__item--${index + 1}`,
-                    )}
-                    key={image.id}
-                  >
-                    <img
-                      src={image.url}
-                      alt={image.id}
-                      className="card__image" />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
-      </article>
-    </section>
+              key={i}
+            >
+              {chunk.map((image, index) => (
+                <div
+                  className={classNames(
+                    'card',
+                    'grid__item',
+                    `grid__item--${index + 1}`,
+                  )}
+                  key={image.id}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.id}
+                    className="card__image" />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+    </article>
   );
 };
 

@@ -13,24 +13,29 @@ const SearchBreedForm = () => {
   const handleSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(setNameOfSearchedBreeds(value));
-    navigate(`macpaw-test/search`);
+    navigate(`/search`);
+    setValue('');
   };
 
   return (
-    <form typeof="form" className="search-breed-form" onSubmit={handleSubmitSearch}>
-        <input
-          type="text"
-          placeholder="Search for breeds by name"
-          className="search-breed-form__input"
-          value={value}
-          onChange={event => setValue(event.target.value)}
-        />
-        <button
-          type="submit"
-          className="search-breed-form__button"
-        >
-        </button>
-      </form>
+    <form
+      typeof="form"
+      className="search-breed-form"
+      onSubmit={handleSubmitSearch}
+    >
+      <input
+        type="text"
+        placeholder="Search for breeds by name"
+        className="search-breed-form__input"
+        value={value}
+        onChange={event => setValue(event.target.value)}
+      />
+      <button
+        type="submit"
+        className="search-breed-form__button"
+      >
+      </button>
+    </form>
   )
 }
 

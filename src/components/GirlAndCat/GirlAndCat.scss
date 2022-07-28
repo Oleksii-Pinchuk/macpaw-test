@@ -1,7 +1,5 @@
 .girl-and-cat {
-  position: relative;
-
-  height: 840px;
+  display: none;
 
   &__article-wrapper {
     position: absolute;
@@ -9,18 +7,25 @@
     background-image: url(../../images/girl-and-pet.png);
     background-repeat: no-repeat;
     background-size: cover;
-      height: 900px;
-      width: 775px;
-      right: -30px;
-      top: -30px;
-      bottom: -30px;
+    height: 900px;
+    width: 775px;
+    right: -30px;
+    top: -30px;
+    bottom: -30px;
   }
 
-  &__girl-and-pet {
+  &__article {
     height: 840px;
-  
+
     background: #FBE0DC;
     border-radius: 20px;
   }
 }
 
+@media (min-width: 1440px) {
+  .girl-and-cat {
+    display: block;
+    position: relative;
+    height: 840px;
+  }
+}

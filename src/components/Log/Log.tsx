@@ -15,10 +15,14 @@ const Log: React.FC<{ log: VoteLog }> = ({ log }) => {
     >
       <div className="log__time">
         {log.time}
-      </div>Image ID:&nbsp;
-      <span style={{ color: '#1D1D1D', "fontWeight": "500" }}>{` ${log?.imageId}`}</span>
-      &nbsp;
-      {`was ${log?.action} ${log?.action === 'added' ? 'to' : 'from'} ${log?.section}`}
+      </div>
+      <div>
+        Image ID:&nbsp;
+        <span style={{ color: '#1D1D1D', "fontWeight": "500" }}>
+          {` ${log?.imageId}`}
+        </span>&nbsp;
+        {`was ${log?.action} ${log?.action === 'added' ? 'to' : 'from'} ${log?.section}`}
+      </div>
     </div>
   );
 };

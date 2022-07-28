@@ -24,6 +24,7 @@ const UploadModal: React.FC<Props> = ({ setOpenModal }) => {
   const handleOnDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   };
+
   const handleOnDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -77,6 +78,13 @@ const UploadModal: React.FC<Props> = ({ setOpenModal }) => {
   }
 
   const onHandleInputClick = () => fileInput.current?.click();
+
+  const onHandleCloseButton = () => {
+    setOpenModal(false);
+
+    const body = document.querySelector("body") as HTMLBodyElement;
+    body.style.overflow = "auto";
+  };
 
   return (
     <div className="upload__background">
@@ -136,7 +144,7 @@ const UploadModal: React.FC<Props> = ({ setOpenModal }) => {
 
         {(uploadErrorExist && imageFile) && (<p className="upload__status upload__status--not-found" >No Cat found - try a different one</p>)}
 
-        <button className="button button--close upload__button--close" onClick={() => setOpenModal(false)}></button>
+        <button className="upload__button upload__button--close" onClick={onHandleCloseButton}></button>
       </div>
     </div >
   );

@@ -71,8 +71,8 @@ const Search = () => {
       {(loaded && searchedBreeds.length !== 0) && (
         <>
           <div className="section__images-gallery search__images-gallery">
-            {breedsToShow.map((chunk) => (
-              <div className="grid">
+            {breedsToShow.map((chunk, i) => (
+              <div className="grid" key={i}>
                 {chunk.map((breed, index) => (
                   <div
                     className={classNames(

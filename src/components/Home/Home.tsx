@@ -21,7 +21,7 @@ const Home = () => {
       <h1 className="home__main-title">Hi intern!</h1>
       <p className="home__description">Welcome to MI 2022 Front-end test</p>
       <h3 className="home__secondary-title">Lets start using The Cat API</h3>
-      <MainNavigation setOpenMenu={() => { }} />
+      <MainNavigation setOpenMenu={() => {}} />
     </div>
 
   );

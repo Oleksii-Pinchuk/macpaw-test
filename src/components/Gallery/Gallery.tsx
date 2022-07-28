@@ -71,7 +71,15 @@ const Gallery = () => {
   };
 
   const onChangeBreed = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setBreedId(event.target.value);
+    const { value } = event.target;
+
+    setBreedId(value);
+    if (value !== '') {
+      const select = document.querySelector('.gallery__type-select') as Element;
+
+      select.getElementsByTagName('option')[1].selected = true;
+      setType('jpg,png');
+    }
   };
 
   const onChangeLimit = (event: React.ChangeEvent<HTMLSelectElement>) => {
